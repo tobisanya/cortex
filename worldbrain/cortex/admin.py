@@ -6,7 +6,7 @@ from .models import Source, AllUrl
 @admin.register(Source)
 class SourceAdmin(FSMTransitionMixin, admin.ModelAdmin):
     fsm_field = ('state',)
-    readonly_fields = ('state', 'latest_crawl')
+    readonly_fields = ('state', )
 
 @admin.register(AllUrl)
 class SourceAdmin(FSMTransitionMixin, admin.ModelAdmin):

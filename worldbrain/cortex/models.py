@@ -43,18 +43,6 @@ class Source(models.Model):
     def fail(self):
         pass
 
-    @property
-    def latest_crawl(self):
-        try:
-            return (
-                self.transitions
-                .filter(state=SourceStates.CRAWLED.value)
-                .latest()
-                .timestamp
-            )
-        except StateLog.DoesNotExist:
-            return None
-
     def __str__(self):
             return 'Source [domain_name: {}] [state: {}]'.format(
                 self.domain_name, self.state
