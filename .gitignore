@@ -1,0 +1,7 @@
+.testmondata
+*.pyc
+venv/
+*egg-info/
+items.json
+.coverage
+.cache/v/cache
