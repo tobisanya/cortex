@@ -7,6 +7,7 @@ from . import forms
 from . import serializers
 from .mixins import DefaultsMixin
 from .models import Source, AllUrl
+from worldbrain.cortex.search.indexes import ArticleIndex
 
 class SourceViewSet(DefaultsMixin, viewsets.ModelViewSet):
 
@@ -27,3 +28,14 @@ class AllUrlViewSet(DefaultsMixin, viewsets.ModelViewSet):
     queryset = AllUrl.objects.all()
     serializer_class = serializers.AllUrlSerializer
     filter_class = forms.AllUrlViewFilter
+
+class SearchViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        search = ArticleIndex()
+        if request.GET.get('q', None):
+            es_data = search.find(request.GET.get('q'))
+            return Response(es_data)
+        else:
+            es_data = search.find('')
+            return Response(es_data)

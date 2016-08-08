@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import logging
+
 from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -19,6 +21,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
+
+logger = logging.getLogger(__name__)
+
 
 def get_env_variable(var_name):
     try:
@@ -169,4 +174,9 @@ LOGGING = {
         'handlers': ['console'],
         'level': 'INFO'
     },
+}
+
+ES = {
+    'host': get_env_variable('ES_HOST'),
+    'article_type': 'article'
 }

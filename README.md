@@ -39,6 +39,7 @@ export DJANGO_SECRET_KEY=0123456789abcdefghijklmnopqrstuvwyxz
 export DATABASE_NAME=worldbrain
 export DATABASE_USER=cortex
 export DATABASE_PASSWORD=cortex
+export ES_HOST=127.0.0.1:9200
 ```
 
 After that, you can then run:

@@ -13,6 +13,11 @@ class AllUrlStates(Enum):
     PENDING = 'pending'
     PROCESSED = 'processed'
 
+class ArticleStates(Enum):
+    PENDING = 'pending'
+    PARSED = 'parsed'
+    EXTRACTED = 'extracted'
+
 
 class Source(models.Model):
     domain_name = models.URLField()
@@ -66,5 +71,36 @@ class AllUrl(models.Model):
         target=AllUrlStates.PROCESSED.value
     )
     def processed(self):
+        pass
+
+class Article(models.Model):
+    url = models.URLField()
+    title = models.CharField(max_length=255)
+    domain_name = models.CharField(max_length=255)
+    text = models.CharField(max_length=255)
+    keywords = models.CharField(max_length=255)
+    authors = models.CharField(max_length=255)
+    tags = models.CharField(max_length=255)
+    summary = models.CharField(max_length=255)
+    links = models.CharField(max_length=255)
+    parse_time = models.CharField(max_length=255)
+    html = models.TextField()
+    publish_date = models.DateField()
+    state = FSMField(default=ArticleStates.PENDING.value, db_index=True)
+
+    @transition(
+        field=state,
+        source='*',
+        target=ArticleStates.EXTRACTED.value
+    )
+    def extracted(self):
+        pass
+
+    @transition(
+        field=state,
+        source='*',
+        target=ArticleStates.PARSED.value
+    )
+    def parsed(self):
         pass
 
