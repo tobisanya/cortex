@@ -60,6 +60,6 @@ script:
         exit 1;;
     esac
 after_success:
-  - if [ -f .coverage ]; then codecov --env TEST_ENV --token=f3d8644a-f484-4fa2-b2e1-33d8ca0ec0c2; fi
+  - if [ -f .coverage ]; then codecov --env TEST_ENV --token=f19ca692-8335-405e-9370-01ccd250d38b; fi
 notifications:
   email: false
