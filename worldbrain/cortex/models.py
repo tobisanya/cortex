@@ -1,7 +1,7 @@
 from django.db import models
 from django_fsm import FSMField, transition
-from django_fsm_log.models import StateLog
 from enum import Enum
+
 
 class SourceStates(Enum):
     PENDING = 'pending'
@@ -9,9 +9,11 @@ class SourceStates(Enum):
     REJECTED = 'rejected'
     FAILED = 'failed'
 
+
 class AllUrlStates(Enum):
     PENDING = 'pending'
     PROCESSED = 'processed'
+
 
 class ArticleStates(Enum):
     PENDING = 'pending'
@@ -49,9 +51,9 @@ class Source(models.Model):
         pass
 
     def __str__(self):
-            return 'Source [domain_name: {}] [state: {}]'.format(
-                self.domain_name, self.state
-            )
+        return 'Source [domain_name: {}] [state: {}]'.format(
+            self.domain_name, self.state
+        )
 
 
 class AllUrl(models.Model):
@@ -72,6 +74,7 @@ class AllUrl(models.Model):
     )
     def processed(self):
         pass
+
 
 class Article(models.Model):
     url = models.URLField()
@@ -103,4 +106,3 @@ class Article(models.Model):
     )
     def parsed(self):
         pass
-

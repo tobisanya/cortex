@@ -5,3 +5,4 @@ venv/
 items.json
 .coverage
 .cache/v/cache
+.idea

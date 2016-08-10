@@ -1,5 +1,6 @@
 import pytest
 
+
 @pytest.fixture()
 def article_fixture():
     from worldbrain.cortex.models import Article

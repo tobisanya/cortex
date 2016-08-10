@@ -1,4 +1,5 @@
-from rest_framework import authentication, permissions, viewsets, filters
+from rest_framework import authentication, permissions, filters
+
 
 class DefaultsMixin(object):
     authentication_classes = (
