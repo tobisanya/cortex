@@ -8,7 +8,6 @@ import django_fsm
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -35,6 +34,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='allurl',
             name='source',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='urls', related_query_name=b'url', to='cortex.Source'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='urls',
+                                    related_query_name=b'url', to='cortex.Source'),
         ),
     ]

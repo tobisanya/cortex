@@ -17,8 +17,7 @@ from django.conf.urls import url, include
 from rest_framework.authtoken.views import obtain_auth_token
 from django.contrib import admin
 
-
-from cortex.urls import router
+from worldbrain.cortex.urls import router
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

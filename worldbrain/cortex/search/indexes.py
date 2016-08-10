@@ -41,4 +41,5 @@ class ArticleIndex(object):
             }
         else:
             body = {"query": {"match_all": {}}}
-        return self.es.search(index=self.ES_INDEX, doc_type=self.ES_ARTICLE_TYPE, body=body)
+        return self.es.search(index=self.ES_INDEX,
+                              doc_type=self.ES_ARTICLE_TYPE, body=body)
