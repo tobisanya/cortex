@@ -50,7 +50,7 @@ $ python manange.py createsuperuser
 $ python manage.py runserver
 ```
 
-When working on Mac OS, some problems with **psycopg2** can occur due to 
+When working on Mac OS, some problems with **psycopg2** and **libssl.1.0.0.dylib** can occur due to 
 the installation path of **PostrgreSQL**. To avoid them, add the _bin_ 
 and the _lib_ path of **PostgreSQL** to _PATH_ (e.g. _PATH=$PATH:/Library/PostgreSQL/9.5/bin_).
 
