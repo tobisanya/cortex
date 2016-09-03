@@ -40,6 +40,7 @@ export DATABASE_NAME=worldbrain
 export DATABASE_USER=cortex
 export DATABASE_PASSWORD=cortex
 export ES_HOST=127.0.0.1:9200
+export PGHOST=localhost
 ```
 
 After that, you can then run:
@@ -50,9 +51,35 @@ $ python manange.py createsuperuser
 $ python manage.py runserver
 ```
 
-When working on Mac OS, some problems with **psycopg2** and **libssl.1.0.0.dylib** can occur due to 
+When working on _Mac OS_, some problems with **psycopg2**, **libcrypto.1.0.0.dylib**, and **libssl.1.0.0.dylib** can occur due to 
 the installation path of **PostrgreSQL**. To avoid them, add the _bin_ 
-and the _lib_ path of **PostgreSQL** to _PATH_ (e.g. _PATH=$PATH:/Library/PostgreSQL/9.5/bin:/Library/PostgreSQL/9.5/lib:_).
+and the _lib_ path of **PostgreSQL** to _PATH_ 
+(e.g. _PATH=$PATH:/Library/PostgreSQL/9.5/bin:/Library/PostgreSQL/9.5/lib:_).
+
+If you still have trouble with **psycopg2**, **libcrypto.1.0.0.dylib**, and **libssl.1.0.0.dylib**, the reason could 
+probably be the missing symlinks ot the libraries. Set the links by running:
+
+```
+$ sudo ln -s /your/PostgreSQL/installation/path/lib/libssl.1.0.0.dylib /usr/local/lib
+$ sudo ln -s /your/PostgreSQL/installation/path/lib/libcrypto.1.0.0.dylib /usr/local/lib
+```
+
+Please note, that due to System Integrity Protection, you can not write into _/usr/lib_ on _Mac OS X El Capitan_ and up.
+
+If after running the _python manage.py runserver_ command the app can not connect to the server
+via Unix domain socket, you have to:
+
+```
+export PGHOST=localhost
+```
+
+You also can use the starter script provided:
+
+```
+./starter_script.sh
+```
+
+to start the development server.
 
 Happy hacking!
 
