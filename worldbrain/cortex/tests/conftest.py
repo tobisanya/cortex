@@ -5,7 +5,7 @@ import pytest
 def article_fixture():
     from worldbrain.cortex.models import Article
 
-    data_dict = {
+    article_dict = {
         'url': 'url',
         'domain_name': 'domain_name',
         'title': 'very_unique_title',
@@ -14,4 +14,4 @@ def article_fixture():
         'parse_time': 'parse_time',
         'state': 'parsed',
     }
-    Article.objects.create(**data_dict)
+    Article.objects.create(**article_dict)

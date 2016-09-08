@@ -1,4 +1,5 @@
-[![Stories in Ready](https://badge.waffle.io/WorldBrain/cortex.png?label=ready&title=Ready)](https://waffle.io/WorldBrain/cortex)
+[![Stories in Ready](https://badge.waffle.io/WorldBrain/cortex.png?label=ready&title=Ready)](https://waffle.io/WorldBrain/cortex) [![codecov](https://codecov.io/gh/WorldBrain/cortex/branch/master/graph/badge.svg)](https://codecov.io/gh/WorldBrain/cortex)
+
 # cortex
 
 `cortex` is the back-end server for the [webmarks](https://github.com/WorldBrain/webmarks) project.

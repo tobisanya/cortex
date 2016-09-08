@@ -6,6 +6,7 @@ from enum import Enum
 class SourceStates(Enum):
     PENDING = 'pending'
     CRAWLED = 'crawled'
+    READY = 'ready'
     REJECTED = 'rejected'
     FAILED = 'failed'
 
@@ -24,6 +25,15 @@ class ArticleStates(Enum):
 class Source(models.Model):
     domain_name = models.URLField()
     state = FSMField(default=SourceStates.PENDING.value, db_index=True)
+    trusted_source = models.BooleanField(default=False)
+
+    @transition(
+        field=state,
+        source=SourceStates.PENDING.value,
+        target=SourceStates.READY.value,
+    )
+    def ready(self):
+        pass
 
     @transition(
         field=state,
@@ -43,7 +53,7 @@ class Source(models.Model):
 
     @transition(
         field=state,
-        source=(SourceStates.CRAWLED.value),
+        source=SourceStates.CRAWLED.value,
         target=SourceStates.FAILED.value,
         custom=dict(admin=False)
     )
@@ -51,8 +61,8 @@ class Source(models.Model):
         pass
 
     def __str__(self):
-        return 'Source [domain_name: {}] [state: {}]'.format(
-            self.domain_name, self.state
+        return '[domain_name: {}] [state: {}] [trusted_source: {}]'.format(
+            self.domain_name, self.state, self.trusted_source
         )
 
 
