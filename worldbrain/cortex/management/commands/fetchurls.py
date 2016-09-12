@@ -28,7 +28,7 @@ class DomainSpider(Spider):
                 url_list.append((url, self.source))
 
         except:
-            pass # TODO handle exception
+            print('Exception')
 
 def add_domain(domain):
     global process
@@ -55,4 +55,4 @@ class Command(BaseCommand):
             try:
                 new_url.save()
             except:
-                pass # TODO handle exception
+                pass
