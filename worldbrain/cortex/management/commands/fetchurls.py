@@ -9,6 +9,7 @@ from scrapy.crawler import CrawlerProcess
 process = CrawlerProcess()
 url_list = list()
 
+
 class DomainSpider(Spider):
     name = 'domainspider'
 
@@ -28,7 +29,8 @@ class DomainSpider(Spider):
                 url_list.append((url, self.source))
 
         except:
-            print('Exception')
+            pass  # TODO handle exception
+
 
 def add_domain(domain):
     global process
@@ -55,4 +57,4 @@ class Command(BaseCommand):
             try:
                 new_url.save()
             except:
-                pass
+                pass  # TODO handle exception
