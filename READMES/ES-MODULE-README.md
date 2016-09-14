@@ -27,3 +27,13 @@ A django `python manage.py reindex` command will be implemented for reindexing t
 #### Step 3: Expose an /api/search/ end-point in the django app that makes use of ES MODULE
 A search api will be exposed on `/api/search?q=<search-phrase>` 
 If `q` is not supplied, a `match_all` query will be used
+
+#### Step 4: Implement pagination and filtering
+The api will accept parameters `size` and `from` which denote the `number of results returned` and `offset` respectively.
+
+Any other parameter sent will be treated as a filter.
+
+The api will also accept comma-separated strings as filter values.  Documents that match any of the supplied values 
+will be returned
+
+A sample request is `/api/search?q=Brain&size=10&from=0&is_trusted_source=true&domain=abc.com,xyz.com`
