@@ -34,9 +34,15 @@ class AllUrlViewSet(DefaultsMixin, viewsets.ModelViewSet):
 class SearchViewSet(viewsets.ViewSet):
     def list(self, request):
         search = ArticleIndex()
-        if request.GET.get('q', None):
-            es_data = search.find(request.GET.get('q'))
-            return Response(es_data)
-        else:
-            es_data = search.find('')
-            return Response(es_data)
+        for key, value in request.GET.items():
+            if key == 'size':
+                search.SIZE = request.GET.get('size')
+            elif key == 'from':
+                search.OFFSET = request.GET.get('from')
+            elif key == 'q':
+                search.PHRASE = request.GET.get('q')
+            else:
+                search.FILTERS[key] = value
+
+        es_data = search.find()
+        return Response(es_data)
