@@ -37,7 +37,7 @@ class Source(models.Model):
 
     @transition(
         field=state,
-        source='*',
+        source=SourceStates.READY.value,
         target=SourceStates.CRAWLED.value
     )
     def crawl(self):
@@ -75,6 +75,7 @@ class AllUrl(models.Model):
     )
     url = models.URLField()
     state = FSMField(default=AllUrlStates.PENDING.value, db_index=True)
+    html = models.TextField(default='')
     is_article = models.BooleanField(default=True)
 
     @transition(
@@ -97,7 +98,6 @@ class Article(models.Model):
     summary = models.CharField(max_length=255)
     links = models.CharField(max_length=255)
     parse_time = models.CharField(max_length=255)
-    html = models.TextField()
     publish_date = models.DateField()
     state = FSMField(default=ArticleStates.PENDING.value, db_index=True)
 
