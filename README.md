@@ -47,8 +47,8 @@ export PGHOST=localhost
 After that, you can then run:
 
 ```
-$ python manange.py migrate
-$ python manange.py createsuperuser
+$ python manage.py migrate
+$ python manage.py createsuperuser
 $ python manage.py runserver
 ```
 
@@ -73,7 +73,11 @@ via Unix domain socket, you have to:
 ```
 export PGHOST=localhost
 ```
-
+In case you face an error like **FATAL:  password authentication failed for user "cortex"**, try the follwing commands:
+```
+$ sudo -u postgres psql worldbrain
+worldbrain=# ALTER USER cortex PASSWORD 'cortex'
+```
 You also can use the starter script provided:
 
 ```
