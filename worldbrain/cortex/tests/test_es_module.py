@@ -10,7 +10,6 @@ from worldbrain.cortex.search.indexes import ArticleIndex
 def test_index_article():
     call_command('reindex')
     time.sleep(5)
-
     search = ArticleIndex()
     search.PHRASE = 'very_unique_title'
     search.SIZE = 1
