@@ -16,4 +16,4 @@ def test_index_article():
     search.OFFSET = 0
     search.FILTERS = {'domain_name': 'domain_name'}
     es_data = search.find()
-    assert es_data['hits']['total'] == 1
+    assert es_data['hits']['total'] >= 1
