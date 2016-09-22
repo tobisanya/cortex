@@ -8,7 +8,7 @@ from worldbrain.cortex.search.indexes import ArticleIndex
 @pytest.mark.django_db
 @pytest.mark.usefixtures('article_fixture')
 def test_index_article():
-    call_command('reindex')
+    call_command('index')
     time.sleep(5)
     search = ArticleIndex()
     search.PHRASE = 'very_unique_title'
