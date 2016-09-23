@@ -6,7 +6,7 @@ from django.forms import model_to_dict
 
 
 @receiver(post_save, sender=Article)
-def my_handler(sender, **kwargs):
+def my_handler(**kwargs):
     search = ArticleIndex()
     article = model_to_dict(kwargs['instance'], exclude=['id'])
     search.index(article, kwargs['instance'].id)
