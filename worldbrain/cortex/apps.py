@@ -7,4 +7,4 @@ class CortexConfig(AppConfig):
     name = 'worldbrain.cortex'
 
     def ready(self):
-        import worldbrain.cortex.signals.handlers
+        import worldbrain.cortex.signals.handlers  # NOQA
